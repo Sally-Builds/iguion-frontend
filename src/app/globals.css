@@ -1,22 +1,104 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
 body {
-    @apply bg-primary text-amber-50
+    @apply text-amber-50;
+    background-color: #090a0b;
+    margin: 0;
+    padding: 0;
 }
 
-/*.quote-section {*/
-/*    !*max-width: 45em;*!*/
-/*    min-height: 80vh;*/
-/*    display: flex;*/
-/*    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("https://image.tmdb.org/t/p/original/yuz0clINVBCEXVT9JZtw8ZzhIVU.jpg");*/
-/*    background-repeat: no-repeat;*/
-/*    !*background-position: contain;*!*/
-/*    background-size: cover;*/
-/*    border-radius: 4px;*/
-/*}*/
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+}
 
-img {
+.cta {
+    background-color: gray;
+    padding: 10px;
+    border-radius: 24px;
+    font-size: 14px
+}
+
+.logo {
+    cursor: pointer;
+}
+
+.quote-section {
+    display: flex;
+    max-height: 80vh;
+    /*opacity: 50%;*/
+}
+
+.card {
+    color: #0e0e0e;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-quote {
+    font-family: 'Special Elite', cursive;
+    color: #dedeea;
+    font-size: 12px;
+}
+
+.card-details {
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff;
+    font-family: 'Special Elite', cursive;
+    font-size: 28px;
+    font-weight: bolder;
+}
+
+.quote-section img {
+    object-fit: contain;
+    width: 600px;
+    height: auto;
+    opacity: 60%;
+}
+
+
+blockquote {
+    font-weight: 100;
+    font-size: 1.2rem;
+    max-width: 600px;
+    line-height: 1.4;
+    position: relative;
+    margin: 0;
+    padding: .5rem;
+}
+
+blockquote:before,
+blockquote:after {
+    position: absolute;
+    color: #f1efe6;
+    font-size: 8rem;
+    width: 4rem;
+    height: 4rem;
+}
+
+blockquote:before {
+    content: '“';
+    left: -5rem;
+    top: -2rem;
+}
+
+blockquote:after {
+    /*content: '”';*/
+    /*right: -1rem;*/
+    /*right: clamp(-0.3rem, -1rem, -1rem);*/
+    bottom: 1rem;
+}
+
+cite {
+    line-height: 3;
+    text-align: left;
 }
