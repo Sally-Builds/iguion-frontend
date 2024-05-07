@@ -1,19 +1,16 @@
 'use client'
-import React from 'react';
-import {useState, useEffect} from 'react'
-import Select from 'react-select'
-import AsyncSelect from 'react-select/async';
-import axios from 'axios'
-import styles from './styles-create.module.css'
-import SideNav from "@/app/components/SideNav";
+import React, {useEffect, useState} from 'react';
+import styles from "@/app/main/styles.module.css";
+import Link from "next/link";
+import Select from "react-select";
+import AsyncSelect from "react-select/async";
+import axios from "axios";
 
-
-const defaultMovieImagePreveiw = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-k5W_6TMcJOjhLn1zu23IX-SN15_d3hkjCTLIaWPs0QW2DhxU'
-const defaultMovieNamePreveiw = 'Action / Adventure'
 const showType = [
     { label: 'Movie', value: 'movie' },
     { label: 'TV Show', value: 'tv' },
 ]
+
 
 const searchMovie = async (keyword) => {
     try {
@@ -33,11 +30,12 @@ const searchMovie = async (keyword) => {
     }
 }
 
+
 const loadOptions = async (inputValue) => {
     return searchMovie(inputValue)
 }
 
-function CreateQuote(props) {
+function Page(props) {
     const [quote, setQuote] = useState('')
     const [movie_type, setMovieType] = useState('')
     const [movie, setMovie] = useState('')
@@ -57,11 +55,6 @@ function CreateQuote(props) {
         setMovie(newValue);
     };
 
-    const handleCastChange = (val) => {
-        console.log(val)
-        setCast(val)
-    }
-
     const getCharacters = async (movie_id) => {
         try {
             const res = await axios.get(`http://localhost:5000/casts?movie_type=tv&movie_id=${movie_id}`)
@@ -70,7 +63,6 @@ function CreateQuote(props) {
                 return {
                     label: cast.cast_name,
                     value: cast.cast_id,
-                    image: cast.cast_image
                 }
             }) : []
         }catch (e) {
@@ -92,17 +84,22 @@ function CreateQuote(props) {
             window.reload()
         }catch (e) {
             console.log(e.response)
-        }finally {
-            window.location.reload()
         }
 
     }
-
     return (
-        <div className={styles.page_layout}>
-            <div className={styles.form_section}>
+        <>
+            <nav className={styles.main_nav}>
+                <div className={styles.logo}>iGuion</div>
+                <ul className={styles.links_section}>
+                    <li><Link href='/create-quote'>View Quotes</Link></li>
+                    <li>Create Quotes</li>
+                    <li>Contact Us</li>
+                </ul>
+            </nav>
+            <div className={styles.hero_section}>
                 <div className="text-2xl font-bold p-8 text-center"> Submit Quote</div>
-                <form onSubmit={submitQuote}>
+                <form className="max-w-sm mx-auto" onSubmit={submitQuote}>
                     <div className="mb-5">
                         <label htmlFor="countries"
                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select show
@@ -134,7 +131,7 @@ function CreateQuote(props) {
                         <Select
                             options={casts}
                             value={cast}
-                            onChange={(val) => handleCastChange(val)}
+                            onChange={(val) => setCast(val)}
                             isDisabled={!movie || !movie.label}
                             placeholder="Search"
                         />
@@ -151,26 +148,32 @@ function CreateQuote(props) {
                                   placeholder="Leave a comment..."></textarea>
 
                     </div>
-                    <div className="text-center">
-                        <button
-                            type="submit"
-                            // disabled={true}
-                            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                            Submit Quote
-                        </button>
-                    </div>
+                    <button
+                        type="submit"
+                        // disabled={true}
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        Submit Quote
+                    </button>
                 </form>
             </div>
-            <div className={styles.side_nav}>
-                <SideNav
-                    movie_image={previewImage ? previewImage : defaultMovieImagePreveiw}
-                    movie_name={movie ? movie.label : defaultMovieNamePreveiw}
-                    cast_image={cast.image}
-                    cast_name={cast.label}
-                />
+            <div className={styles.page_layout}>
+                <div className={styles.side_nav}>
+                    <div className={styles.side_nav_heading}>
+                        <h4>Trending Now</h4>
+                        <a>See All</a>
+                    </div>
+                    <div className={styles.cards_section}>
+                        <div className={styles.side_nav_card}>
+                            <div className={styles.card_title}>Action / Adventure</div>
+                        </div>
+                        <div className={styles.side_nav_card}>
+                            <div className={styles.card_title}>Action / Adventure</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </>
     );
 }
 
-export default CreateQuote;
+export default Page;

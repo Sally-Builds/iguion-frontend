@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import styles from './styles-home.module.css'
+import styles from './styles.module.css'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -8,6 +8,21 @@ function Page(props) {
     const  pathname = usePathname()
     return (
         <>
+            <nav className={styles.main_nav}>
+                <div className={styles.logo}>iGuion</div>
+                <ul className={styles.links_section}>
+                    <li>
+                        <Link className={pathname === '/main' ? styles.link_item_active : styles.link_item}
+                              href='/'>Home</Link>
+                    </li>
+                    <li>
+                        <Link className={pathname === '/main/create-quote' ? styles.link_item_active : styles.link_item}
+                              href='/main/create-quote'>View Quotes</Link>
+                    </li>
+                    <li>Create Quotes</li>
+                    <li>Contact Us</li>
+                </ul>
+            </nav>
             <div className={styles.page_layout}>
                 <div className={styles.hero_section}>
                     <div className={styles.hero_image}>

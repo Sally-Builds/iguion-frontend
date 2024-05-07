@@ -6,7 +6,8 @@
 
 body {
     @apply text-amber-50;
-    background-color: #090a0b;
+    background-color: #02040e;
+    /*background-color: #090a0b;*/
     margin: 0;
     padding: 0;
 }
