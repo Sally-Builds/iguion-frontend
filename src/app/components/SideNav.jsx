@@ -3,9 +3,9 @@ import styles from './styles-side_nav.module.css'
 
 function SideNav(
     {
-        movie_image='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-k5W_6TMcJOjhLn1zu23IX-SN15_d3hkjCTLIaWPs0QW2DhxU',
+        movie_image='https://images5.alphacoders.com/131/1319604.jpeg',
         movie_name = 'Action / Adventure',
-        cast_image = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-k5W_6TMcJOjhLn1zu23IX-SN15_d3hkjCTLIaWPs0QW2DhxU',
+        cast_image = 'https://images5.alphacoders.com/131/1319604.jpeg',
         cast_name = 'Romance / Love'
     }) {
     return (
@@ -22,14 +22,14 @@ function SideNav(
                         height: '220px',
                         display: 'flex',
                         margin: '12px 0',
-                        'border-radius': '18px',
+                        'borderRadius': '18px',
                         filter: 'brightness(70%)',
-                        'align-items': 'flex-end',
-                        'background-color': 'navajowhite',
-                        'background-size': 'cover', /* Cover the entire background */
-                        'background-position': 'center', /* Center the background image */
-                        'background-repeat': 'no-repeat', /* Prevent background image from repeating */
-                        'background-image': `url('${movie_image}')`
+                        'alignItems': 'flex-end',
+                        'backgroundColor': 'navajowhite',
+                        'backgroundSize': 'cover', /* Cover the entire background */
+                        'backgroundPosition': 'center', /* Center the background image */
+                        'backgroundRepeat': 'no-repeat', /* Prevent background image from repeating */
+                        'backgroundImage': `url('${movie_image}')`
                     }}
                 >
                     <div className={styles.card_title}>{movie_name}</div>
@@ -42,14 +42,14 @@ function SideNav(
                         height: '220px',
                         display: 'flex',
                         margin: '12px 0',
-                        'border-radius': '18px',
+                        'borderRadius': '18px',
                         filter: 'brightness(70%)',
-                        'align-items': 'flex-end',
-                        'background-color': 'navajowhite',
-                        'background-size': 'cover', /* Cover the entire background */
-                        'background-position': 'center', /* Center the background image */
-                        'background-repeat': 'no-repeat', /* Prevent background image from repeating */
-                        'background-image': `url('${cast_image}')`
+                        'alignItems': 'flex-end',
+                        'backgroundColor': 'navajowhite',
+                        'backgroundSize': 'cover', /* Cover the entire background */
+                        'backgroundPosition': 'center', /* Center the background image */
+                        'backgroundRepeat': 'no-repeat', /* Prevent background image from repeating */
+                        'backgroundImage': `url('${cast_image}')`
                     }}
                 >
                     <div className={styles.card_title}>{cast_name}</div>

@@ -35,7 +35,7 @@ const searchMovie = async (keyword, movie_type) => {
     }
 }
 
-function CreateQuote(props) {
+function CreateQuote() {
     const [quote, setQuote] = useState('')
     const [movie_type, setMovieType] = useState('')
     const [movie, setMovie] = useState('')

@@ -2,6 +2,7 @@ import './globals.css'
 import {  Rubik } from 'next/font/google'
 import React from "react";
 import Navbar from "@/app/components/Navbar";
+import Script from "next/script";
 
 const rubik = Rubik({ subsets: ['latin'] })
 
@@ -14,10 +15,11 @@ export default function RootLayout({ children }) {
   return (
       <html lang="en">
       <head>
-        <title>iGuion</title>
+          <title>iGuion</title>
+          <Script src="https://kit.fontawesome.com/357db926b6.js" crossOrigin="anonymous"></Script>
       </head>
       <body className={rubik.className}>
-      <Navbar />
+      <Navbar/>
       {children}
       </body>
       </html>

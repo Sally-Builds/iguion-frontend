@@ -18,8 +18,14 @@ const Navbar = () => {
                     <Link className={pathname === '/create-quote' ? styles.link_item_active : styles.link_item}
                           href='/create-quote'>Add Quotes</Link>
                 </li>
-                <li>View Quotes</li>
-                <li>Contact Us</li>
+                <li><Link
+                    className={pathname === '/view-quotes' ? styles.link_item_active : styles.link_item}
+                    href={'/view-quotes'}> View Quotes </Link> </li>
+                <li>
+                    <Link
+                    className={styles.link_item}
+                    href="mailto:uzoagulujoshua@yahoo.com" > Contact us </Link>
+                </li>
             </ul>
         </nav>
     );

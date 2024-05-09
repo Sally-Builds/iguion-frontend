@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css?family=Special+Elite');
+
+.quote_section {
+    height: calc(100vh - 60px);
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, calc(10vh - 6px));
+    font-family: 'Special Elite', cursive;
+    backdrop-filter: blur(40%);
+}
+
+.quote {
+    margin: 10px 20px;
+    color: white;
+    font-size: 2.0rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+
+.main_quote_section {
+    z-index: 9999999;
+    grid-column: 3 / span 6;
+    grid-row: 1 / span 10 ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+
+}
+.quote_meta {
+    display: flex;
+    justify-content: space-between;
+}
+
+.chevron_left {
+    grid-row: 5 / span 1;
+    padding: 12px;
+    font-size: 40px;
+    color: cornflowerblue;
+    cursor: pointer;
+}
+.chevron_right {
+    grid-column: 10 / span 1;
+    text-align: right;
+    grid-row: 5 / span 1;
+    padding: 12px;
+    font-size: 40px;
+    color: cornflowerblue;
+    cursor: pointer;
+}
+
