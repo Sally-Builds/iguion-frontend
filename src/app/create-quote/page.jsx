@@ -6,6 +6,7 @@ import AsyncSelect from 'react-select/async';
 import axios from 'axios'
 import styles from './styles-create.module.css'
 import SideNav from "@/app/components/SideNav";
+import AxiosInstance from "@/app/helpers/axiosInstance";
 
 
 const defaultMovieImagePreveiw = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-k5W_6TMcJOjhLn1zu23IX-SN15_d3hkjCTLIaWPs0QW2DhxU'
@@ -15,9 +16,10 @@ const showType = [
     { label: 'TV Show', value: 'tv' },
 ]
 
-const searchMovie = async (keyword) => {
+const searchMovie = async (keyword, movie_type) => {
     try {
-        const res = await axios.get(`http://localhost:5000/search?movie_type=tv&keyword=${keyword}`)
+        // const res = await axios.get(`http://localhost:5000/search?movie_type=tv&keyword=${keyword}`)
+        const res = await AxiosInstance.get(`/search?movie_type=${movie_type}&keyword=${keyword}`)
         let movies = res.data.movies
 
         return movies.length > 0 ? movies.map((movie) => {
@@ -33,10 +35,6 @@ const searchMovie = async (keyword) => {
     }
 }
 
-const loadOptions = async (inputValue) => {
-    return searchMovie(inputValue)
-}
-
 function CreateQuote(props) {
     const [quote, setQuote] = useState('')
     const [movie_type, setMovieType] = useState('')
@@ -46,26 +44,31 @@ function CreateQuote(props) {
     const [keyword, setKeyword] = useState('')
     const [previewImage, setPreviewImage] = useState('')
 
-    useEffect(() => {
-        searchMovie().then(res => console.log(res))
-    }, []);
+    // useEffect(() => {
+    //     searchMovie().then(res => console.log(res))
+    // }, []);
+
+    const loadOptions = async (inputValue) => {
+        return searchMovie(inputValue, movie_type.value)
+    }
 
     const handleChange = async (newValue) => {
         setPreviewImage(newValue.image)
-        const casts = await getCharacters(newValue.value)
+        const casts = await getCharacters(newValue.value, movie_type.value)
         setCasts(casts)
         setMovie(newValue);
     };
 
     const handleCastChange = (val) => {
-        console.log(val)
         setCast(val)
     }
 
-    const getCharacters = async (movie_id) => {
+    const getCharacters = async (movie_id, movie_type) => {
         try {
-            const res = await axios.get(`http://localhost:5000/casts?movie_type=tv&movie_id=${movie_id}`)
+            // const res = await axios.get(`http://localhost:5000/casts?movie_type=tv&movie_id=${movie_id}`)
+            const res = await AxiosInstance.get(`/casts?movie_type=${movie_type}&movie_id=${movie_id}`)
             let casts = res.data.casts
+            console.log(casts)
             return casts.length > 0 ? casts.map((cast) => {
                 return {
                     label: cast.cast_name,
@@ -87,10 +90,11 @@ function CreateQuote(props) {
             "quote": quote
         }
         try {
-            const res = await axios.post('http://localhost:5000/quotes', data)
+            const res = await AxiosInstance.post('/quotes', data)
             console.log(res)
-            window.reload()
+            // window.reload()
         }catch (e) {
+            console.log(e)
             console.log(e.response)
         }finally {
             window.location.reload()
